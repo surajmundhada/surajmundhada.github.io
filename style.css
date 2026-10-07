@@ -13,10 +13,19 @@
 .bio{margin-top:20px}.availability{margin-top:18px}.socials{margin-top:18px}.intro-note{margin-top:22px}
 @media(max-width:700px){.intro{display:block}.identity{display:flex;flex-direction:column;align-items:flex-start;gap:25px}.portrait{width:min(100%,300px);height:auto;aspect-ratio:3/4;align-self:center}.identity>div:last-child{width:100%}.bio{margin-top:24px}.socials{margin-top:22px}.intro-note{margin-top:25px}}
 
-.quote-section{margin-top:132px;padding-top:42px}
-.quote-avatar{position:absolute;top:-92px;left:26px;width:120px;height:120px;padding:0;border:1px solid var(--line);border-radius:24px;background:var(--surface);overflow:hidden;cursor:pointer;touch-action:manipulation;box-shadow:var(--shadow);transform-origin:center bottom}
-.quote-avatar img{position:absolute;display:block;width:180px;height:270px;max-width:none;left:-30px;top:-3px;object-fit:contain}
+
+.quote-section{margin-top:65px;display:flex;align-items:center;gap:28px;padding:28px 32px;isolation:isolate}
+.quote-avatar{position:relative;flex:0 0 140px;width:140px;height:156px;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;transform-origin:center bottom}
+.quote-avatar img{display:block;width:100%;height:100%;object-fit:contain}
+.quote-section blockquote{flex:1;min-width:0}.quote-symbol{left:192px;top:12px;z-index:-1;font-size:100px}
 .quote-avatar.greeting{animation:avatar-greeting 650ms ease-in-out 1}
-@keyframes avatar-greeting{0%,100%{transform:rotate(0)}25%{transform:rotate(-5deg)}60%{transform:rotate(4deg)}80%{transform:rotate(-2deg)}}
-@media(max-width:600px){.quote-avatar{left:22px}footer div{flex-wrap:wrap;gap:10px 18px}}
-@media(prefers-reduced-motion:reduce){.quote-avatar.greeting{animation:none}}
+@keyframes avatar-greeting{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}60%{transform:rotate(3deg)}80%{transform:rotate(-1deg)}}
+.cat-toggle{border:0;padding:0;background:transparent;color:var(--faint);font-size:12px;line-height:inherit}.cat-toggle:hover{color:var(--accent)}.cat-toggle[aria-pressed=true]{color:var(--accent)}.cat-toggle:disabled{display:none}
+.cursor-cat{position:fixed;left:0;top:0;width:42px;height:42px;pointer-events:none;user-select:none;z-index:40}.cursor-cat[hidden]{display:none}.cat-art{display:block;width:42px;height:42px;transform:scaleX(var(--cat-facing,1));overflow:visible}.cat-running,.cat-sleep-eyes{display:none}
+.cursor-cat[data-state=run] .cat-rest{display:none}.cursor-cat[data-state=run] .cat-running{display:block}
+.cursor-cat[data-state=sleep] .cat-eyes{display:none}.cursor-cat[data-state=sleep] .cat-sleep-eyes{display:block}
+.cursor-cat[data-state=run] .cat-running{animation:cat-bob 240ms ease-in-out infinite}.cat-legs-a{animation:cat-stride 240ms ease-in-out infinite alternate;transform-origin:24px 33px}.cat-legs-b{animation:cat-stride 240ms ease-in-out infinite alternate-reverse;transform-origin:24px 33px}
+@keyframes cat-stride{from{transform:translateX(-2px) rotate(-5deg)}to{transform:translateX(2px) rotate(5deg)}}@keyframes cat-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@media(max-width:600px){.quote-section{gap:16px;padding:24px 20px;align-items:flex-start}.quote-avatar{flex-basis:82px;width:82px;height:100px}.quote-section blockquote p{font-size:16px}.quote-symbol{left:114px;top:12px;font-size:75px}footer div{flex-wrap:wrap;gap:10px 18px}}
+@media(max-width:380px){.quote-section{display:block}.quote-avatar{width:94px;height:110px;margin-bottom:14px}.quote-symbol{left:20px;top:118px}}
+@media(prefers-reduced-motion:reduce){.quote-avatar.greeting{animation:none}.cursor-cat{display:none}}
