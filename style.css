@@ -30,3 +30,5 @@
 @media(max-width:600px){.quote-section{gap:16px;padding:24px 20px;align-items:flex-start}.quote-avatar{flex-basis:82px;width:82px;height:100px}.quote-section blockquote p{font-size:16px}.quote-symbol{left:114px;top:12px;font-size:75px}footer div{flex-wrap:wrap;gap:10px 18px}}
 @media(max-width:380px){.quote-section{display:block}.quote-avatar{width:94px;height:110px;margin-bottom:14px}.quote-symbol{left:20px;top:118px}}
 @media(prefers-reduced-motion:reduce){.quote-avatar.greeting{animation:none}.cursor-cat{display:none}}
+
+#problems-solved{font-weight:inherit}.coding-sync{display:block;font-size:11px;color:var(--faint);margin-top:6px}.coding-sync[hidden]{display:none}
