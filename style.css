@@ -31,4 +31,4 @@
 @media(max-width:380px){.quote-section{display:block}.quote-avatar{width:94px;height:110px;margin-bottom:14px}.quote-symbol{left:20px;top:118px}}
 @media(prefers-reduced-motion:reduce){.quote-avatar.greeting{animation:none}.cursor-cat{display:none}}
 
-#problems-solved{font-weight:inherit}.coding-sync{display:block;font-size:11px;color:var(--faint);margin-top:6px}.coding-sync[hidden]{display:none}
+#problems-solved{font-weight:inherit}

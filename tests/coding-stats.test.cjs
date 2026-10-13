@@ -34,15 +34,15 @@ test('rejects the wrong profile, failure responses, and duplicate platform data'
 });
 
 async function runPage(fetch, cache = null) {
-  const number = { textContent: '288' }, status = { hidden: true };
+  const number = { textContent: '288' };
   let saved = null;
   const context = { document: { hidden: false, addEventListener() {},
-    getElementById(id) { return id === 'problems-solved' ? number : status; } },
+    getElementById(id) { return id === 'problems-solved' ? number : null; } },
     localStorage: { getItem() { return JSON.stringify(cache); }, setItem(key, value) { saved = JSON.parse(value); } },
     fetch, AbortController, setTimeout, clearTimeout };
   vm.runInNewContext(fs.readFileSync(require.resolve('../coding-stats.js'), 'utf8'), context);
   await new Promise(resolve => setImmediate(resolve));
-  return { number, status, saved };
+  return { number, saved };
 }
 test('failed requests preserve cached counts and do not claim a new sync', async () => {
   const result = await runPage(async () => { throw new Error('Offline'); }, { count: 297, checkedAt: Date.now() - 1000 });
@@ -52,12 +52,10 @@ test('failed requests preserve cached counts and do not claim a new sync', async
 test('successful sync updates the card and persists the latest count', async () => {
   const result = await runPage(async () => ({ ok: true, json: async () => response([230, 36, 8, 18]) }));
   assert.equal(result.number.textContent, '292');
-  assert.equal(result.status.hidden, false);
   assert.equal(result.saved.count, 292);
 });
 test('invalid responses keep the HTML fallback usable', async () => {
   const result = await runPage(async () => ({ ok: true, json: async () => response([null]) }));
   assert.equal(result.number.textContent, '288');
-  assert.equal(result.status.hidden, true);
   assert.equal(result.saved, null);
 });

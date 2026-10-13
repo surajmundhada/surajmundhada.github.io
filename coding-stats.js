@@ -32,20 +32,15 @@
   if (typeof document === 'undefined') return;
 
   const number = document.getElementById('problems-solved');
-  const status = document.getElementById('coding-sync');
-  if (!number || !status) return;
+  if (!number) return;
   let lastAttempt = 0, pending = false;
-  function show(count, checkedAt) {
+  function show(count) {
     number.textContent = String(count);
-    const date = new Date(checkedAt);
-    status.textContent = `Synced ${date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}`;
-    status.title = `Last checked against Codolio: ${date.toLocaleString()}`;
-    status.hidden = false;
   }
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey));
     if (validCount(cached?.count) && Number.isFinite(cached.checkedAt) &&
-        cached.checkedAt > 0 && cached.checkedAt <= Date.now()) show(cached.count, cached.checkedAt);
+        cached.checkedAt > 0 && cached.checkedAt <= Date.now()) show(cached.count);
   } catch { /* The HTML count remains usable when storage is unavailable. */ }
 
   async function refresh() {
@@ -61,7 +56,7 @@
       if (!response.ok) throw new Error('Codolio unavailable');
       const count = parseProfile(await response.json());
       const checkedAt = Date.now();
-      show(count, checkedAt);
+      show(count);
       try { localStorage.setItem(cacheKey, JSON.stringify({ count, checkedAt })); } catch {}
     } catch { /* Preserve the last successful count; never replace it with zero. */ }
     finally { clearTimeout(timeout); pending = false; }
