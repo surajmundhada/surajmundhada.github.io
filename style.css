@@ -8,6 +8,7 @@
 .intro{display:grid;grid-template-columns:minmax(0,1fr) 260px;column-gap:36px;align-items:start}
 .identity{display:contents}.identity>div:last-child{grid-column:1;grid-row:1}
 .portrait{grid-column:2;grid-row:1/6;width:260px;height:auto;aspect-ratio:3/4;overflow:hidden;border-radius:18px;align-self:start;flex:none}
+.portrait picture{display:block;width:100%;height:100%}
 .portrait img{display:block;width:100%;height:100%;object-fit:contain;transform:none}
 .bio,.availability,.socials,.intro-note{grid-column:1}
 .bio{margin-top:20px}.availability{margin-top:18px}.socials{margin-top:18px}.intro-note{margin-top:22px}
